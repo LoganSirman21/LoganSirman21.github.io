@@ -77,7 +77,7 @@ const cannonHeight = 80;
 let projectiles = [];
 const defaultProjectileWidth = 24;
 const defaultProjectileHeight = defaultProjectileWidth;
-const collectableWidth = 40;
+const collectableWidth = 23;
 const collectableHeight = 40;
 let collectables = [];
 
@@ -92,10 +92,17 @@ let halleImage;
 let animationDetails = {};
 
 var collectableList = {
-  database: { image: "images/collectables/database.png" },
+  database: { image: "images/collectables/database.png"},
   diamond: { image: "images/collectables/diamond-head.png" },
   grace: { image: "images/collectables/grace-head.png" },
   kennedi: { image: "images/collectables/kennedi-head.png" },
   max: { image: "images/collectables/max-head.png" },
   steve: { image: "images/collectables/steve-head.png" },
+  aqua: { image: "images/collectables/soul aqua.png" },
+  blue: { image: "images/collectables/soul blue.png" },
+  green: { image: "images/collectables/soul green.png" },
+  orange: { image: "images/collectables/soul orange.png" },
+  purple: { image: "images/collectables/soul purple.png" },
+  yellow: { image: "images/collectables/soul yellow.png" },
+  red: { image: "images/collectables/soul red.png" },
 };
