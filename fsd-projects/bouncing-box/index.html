@@ -22,9 +22,9 @@
 
       .board {
         height: 10vh;
-      background-image: url("images/balatro_background");
-    background-size: cover;
-    }
+        background-image: url("images/balatro_background");
+        background-size: cover;
+      }
     </style>
     <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
   </head>
@@ -45,6 +45,7 @@
         var box = jQuery(".box"); // reference to the HTML .box element
         var board = jQuery(".board"); // reference to the HTML .board element
         var boardWidth = board.width(); // the maximum X-Coordinate of the screen
+        var boardHeight = jQuery(window).height();
 
         // update the boardWidth variable when the window is resized
         jQuery(window).on("resize", function () {
@@ -52,15 +53,18 @@
         });
 
         // Every 50 milliseconds, call the update Function (see below)
-        setInterval(update, 50);
-
+        var interval = setInterval(update, 50);
+        function endgame() {
+          clearInterval(interval);
+        }
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
+        board.on("click", handleBoardClick);
 
         // moves the Box to a new position on the screen along the X-Axis
         function moveBoxTo(newPositionX, newPositionY) {
           box.css("left", newPositionX);
-          box.css("top", newPositionY)
+          box.css("top", newPositionY);
         }
 
         // changes the text displayed on the Box
@@ -73,31 +77,34 @@
         //////////////////////////////////////////////////////////////////
 
         // TODO 2 - Variable declarations
-var positionX = 0;
-var points = 0
-var speed = 10
-var positionY = 0
-var speedY = 7.5
-var boardHeight = jQuery(window).height();
+        var positionX = 0;
+        var points = 0;
+        var speed = 10;
+        var positionY = 0;
+        var speedY = 7.5;
+        var boardClicks = 0;
+        var randNum = Math.random() * boardWidth;
+        var randYNum = Math.random() * boardHeight;
+
         /**
          * This Function will be called 20 times/second.
          * Each time it is called, it should move the Box to a new location.
          * If the box drifts off the screen, turn it around!
          */
         function update() {
-moveBoxTo(positionX, positionY);
+          moveBoxTo(positionX, positionY);
           positionX += speed;
-        if(positionX > boardWidth){
-          speed *= -1;
-        }
-if(positionX < 0){
-  speed *= -1;
-}
+          if (positionX > boardWidth) {
+            speed *= -1;
+          }
+          if (positionX < 0) {
+            speed *= -1;
+          }
           positionY = positionY + speedY;
-          if(positionY > boardHeight){
+          if (positionY > boardHeight) {
             speedY *= -1;
           }
-          if(positionY < 0){
+          if (positionY < 0) {
             speedY *= -1;
           }
         }
@@ -110,16 +117,22 @@ if(positionX < 0){
          * - move the box to the left side of the screen.
          */
         function handleBoxClick() {
-positionX = 0;
-positionY = 0;
-points++
-changeBoxText(points);
-speed = 3 * points + 10;
-speedY = 2 * points + 7.5;
+          positionX = randNum;
+          positionY = randYNum;
+          points++;
+          changeBoxText(points);
+          speed = 3 * points + 10;
+          speedY = 2 * points + 7.5;
+          randNum = Math.random() * boardWidth;
+          randYNum = Math.random() * boardHeight;
         }
-
-
-        
+        function handleBoardClick() {
+          boardClicks++;
+          if (boardClicks === 10) {
+            alert("Game over! Your score is " + points + "!");
+            endgame();
+          }
+        }
       })();
     </script>
   </body>
