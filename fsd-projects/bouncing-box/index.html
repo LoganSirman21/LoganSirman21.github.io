@@ -9,7 +9,7 @@
         width: 50px;
         height: 65px;
         background-image: url("images/Joker.jpg");
-        background-size: contain;
+        background-size: cover;
         font-size: 300%;
         text-align: center;
         user-select: none;
@@ -22,7 +22,7 @@
 
       .board {
         height: 10vh;
-        background-image: url("images/balatro_background");
+        background-image: url("images/balatroBackground.jpeg");
         background-size: cover;
       }
     </style>
@@ -127,7 +127,7 @@
           randYNum = Math.random() * boardHeight;
         }
         function handleBoardClick() {
-          boardClicks++;
+          boardClicks += 1 ;
           if (boardClicks === 10) {
             alert("Game over! Your score is " + points + "!");
             endgame();
