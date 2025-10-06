@@ -21,7 +21,7 @@
       }
 
       .board {
-        height: 10vh;
+        height: 100vh;
         background-image: url("images/balatroBackground.jpeg");
         background-size: cover;
       }
@@ -56,6 +56,7 @@
         var interval = setInterval(update, 50);
         function endgame() {
           clearInterval(interval);
+          window.location.reload();
         }
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
@@ -128,7 +129,7 @@
         }
         function handleBoardClick() {
           boardClicks += 1 ;
-          if (boardClicks === 10) {
+          if (boardClicks === points + 10) {
             alert("Game over! Your score is " + points + "!");
             endgame();
           }
