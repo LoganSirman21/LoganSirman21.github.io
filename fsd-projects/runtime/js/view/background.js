@@ -41,9 +41,9 @@ var background = function (window) {
       // you should modify both the height and color to suit your game
       var backgroundFill = draw.rect(canvasWidth, canvasHeight);
       background.addChild(backgroundFill);
-      var surface = draw.bitmap("img/surface.jpeg");
-      surface.scaleY = 600;
-      surface.scaleX = 600;
+      var surface = draw.bitmap("img/surfaceLarge.png");
+      
+      
       background.addChild(surface);
       // TODO 2: - Add a moon and starfield
 
@@ -59,7 +59,7 @@ for (var i = 0; i < 5; i++) {
       // TODO 3: Part 1 - Add a tree
       tree = draw.bitmap("img/MinecraftTree.png");
       tree.x = 950;
-      tree.y = 0;
+      tree.y = 100;
       background.addChild(tree);
     } // end of render function - DO NOT DELETE
 
@@ -76,6 +76,7 @@ for (var i = 0; i < 5; i++) {
       if (tree.x < -200) {
         tree.x = canvasWidth;
       }
+     
       // TODO 4: Part 2 - Parallax
       for(var i = 0; i < buildings.length; i++){
         buildings[i].x = buildings[i].x -1
