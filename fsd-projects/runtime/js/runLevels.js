@@ -31,8 +31,6 @@ var runLevels = function (window) {
       var phantom = draw.bitmap("img/phantomSmall.png");
       phantom.x = -25;
       phantom.y = -25;
-      // phantom.scaleX =
-      // phantom.scaleY =
       sawBladeHitZone.addChild(phantom);
     }
     createPhantom(600, 180);
@@ -67,22 +65,39 @@ var runLevels = function (window) {
       reward.addChild(cow);
       reward.x = x;
       reward.y = y;
-      reward.onPlayerCollision = function Collide2 () {
+      reward.velocityX = -5
+      reward.onPlayerCollision = function collide2() {
         game.increaseScore(500);
-      }
-      reward.onProjectileCollision = function projectileCollide2(){
-        reward.flyTo(reward.x, 500);
-      }
-      game.addGameItem("reward");
+        reward.fadeOut();
+      };
+      reward.onProjectileCollision = function projectileCollide2() {
+       reward.fadeOut();
+      };
+      game.addGameItem(reward);
     }
-    createReward(1250, 150);
-    function createMarker() {
-      onPlayerCollision = startLevel();
-      onProjectileCollision = startLevel();
+    createReward(4250, 250);
+    function createMarker(x, y) {
+      var marker = game.createGameItem("marker", 25);
+      var portal = draw.bitmap("img/nether.png");
+      portal.x = -90;
+      portal.y = -120;
+      marker.addChild(portal);
+      marker.x = x
+      marker.y = y
+      marker.velocityX = -4;
+      marker.onPlayerCollision = function start(){
+      startLevel();
+      }
+      marker.onProjectileCollision = function start2(){
+        startLevel();
     }
+    game.addGameItem(marker);
+}
+    createMarker(5250, 250);
     function startLevel() {
       // TODO 13 goes below here
-
+var level = levelData["currentLevel"];
+var levelobjects = level["gameItems"]
       //////////////////////////////////////////////
       // DO NOT EDIT CODE BELOW HERE
       //////////////////////////////////////////////
