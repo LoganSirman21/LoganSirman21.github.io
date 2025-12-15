@@ -65,13 +65,13 @@ var runLevels = function (window) {
       reward.addChild(cow);
       reward.x = x;
       reward.y = y;
-      reward.velocityX = -5
+      reward.velocityX = -5;
       reward.onPlayerCollision = function collide2() {
         game.increaseScore(500);
         reward.fadeOut();
       };
       reward.onProjectileCollision = function projectileCollide2() {
-       reward.fadeOut();
+        reward.fadeOut();
       };
       game.addGameItem(reward);
     }
@@ -82,22 +82,34 @@ var runLevels = function (window) {
       portal.x = -90;
       portal.y = -120;
       marker.addChild(portal);
-      marker.x = x
-      marker.y = y
+      marker.x = x;
+      marker.y = y;
       marker.velocityX = -4;
-      marker.onPlayerCollision = function start(){
-      startLevel();
-      }
-      marker.onProjectileCollision = function start2(){
+      marker.onPlayerCollision = function start() {
         startLevel();
+      };
+      marker.onProjectileCollision = function start2() {
+        startLevel();
+      };
+      game.addGameItem(marker);
     }
-    game.addGameItem(marker);
-}
     createMarker(5250, 250);
     function startLevel() {
       // TODO 13 goes below here
-var level = levelData["currentLevel"];
-var levelobjects = level["gameItems"]
+      var level = levelData.currentLevel;
+      var levelObjects = levelData.gameItems;
+      for (var i = 0; i < levelObjects.length; i++) {
+        var eachElement = levelObjects[i];
+        if(levelObjects.type = "sawblade"){
+        createPhantom(phantom.x, phantom.y);
+        }else if(levelObjects.type = "enemy"){
+        createEnemy(enemy.x, enemy.y);
+        }else if(levelObjects.type = "reward"){
+        createReward(reward.x, reward.y);
+        }else if(levelObjects.type = "marker"){
+        createMarker(marker.x, marker.y);
+        }
+      }
       //////////////////////////////////////////////
       // DO NOT EDIT CODE BELOW HERE
       //////////////////////////////////////////////
