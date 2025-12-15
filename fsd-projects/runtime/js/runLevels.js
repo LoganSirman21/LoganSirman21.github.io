@@ -33,9 +33,9 @@ var runLevels = function (window) {
       phantom.y = -25;
       sawBladeHitZone.addChild(phantom);
     }
-    createPhantom(600, 180);
-    createPhantom(900, 180);
-    createPhantom(1200, 180);
+    // createPhantom(600, 180);
+    // createPhantom(900, 180);
+    // createPhantom(1200, 180);
     function createEnemy(x, y) {
       var enemy = game.createGameItem("enemy", 25);
       var zombie = draw.bitmap("img/zombie.png");
@@ -44,7 +44,7 @@ var runLevels = function (window) {
       enemy.addChild(zombie);
       enemy.x = x;
       enemy.y = y;
-      enemy.velocityX = -5;
+      enemy.velocityX = -4;
       enemy.onPlayerCollision = function collide() {
         game.changeIntegrity(-20);
       };
@@ -54,9 +54,9 @@ var runLevels = function (window) {
       };
       game.addGameItem(enemy);
     }
-    createEnemy(1000, 250);
-    createEnemy(2000, 250);
-    createEnemy(3000, 250);
+    // createEnemy(1000, 250);
+    // createEnemy(2000, 250);
+    // createEnemy(3000, 250);
     function createReward(x, y) {
       var reward = game.createGameItem("reward", 25);
       var cow = draw.bitmap("img/cow.png");
@@ -65,7 +65,7 @@ var runLevels = function (window) {
       reward.addChild(cow);
       reward.x = x;
       reward.y = y;
-      reward.velocityX = -5;
+      reward.velocityX = -4;
       reward.onPlayerCollision = function collide2() {
         game.increaseScore(500);
         reward.fadeOut();
@@ -74,8 +74,9 @@ var runLevels = function (window) {
         reward.fadeOut();
       };
       game.addGameItem(reward);
+  
     }
-    createReward(4250, 250);
+    //createReward(4250, 250);
     function createMarker(x, y) {
       var marker = game.createGameItem("marker", 25);
       var portal = draw.bitmap("img/nether.png");
@@ -93,21 +94,21 @@ var runLevels = function (window) {
       };
       game.addGameItem(marker);
     }
-    createMarker(5250, 250);
+    //createMarker(5250, 250);
     function startLevel() {
       // TODO 13 goes below here
-      var level = levelData.currentLevel;
-      var levelObjects = levelData.gameItems;
+      var level = levelData[currentLevel];
+      var levelObjects = level.gameItems;
       for (var i = 0; i < levelObjects.length; i++) {
         var eachElement = levelObjects[i];
-        if(levelObjects.type = "sawblade"){
-        createPhantom(phantom.x, phantom.y);
-        }else if(levelObjects.type = "enemy"){
-        createEnemy(enemy.x, enemy.y);
-        }else if(levelObjects.type = "reward"){
-        createReward(reward.x, reward.y);
-        }else if(levelObjects.type = "marker"){
-        createMarker(marker.x, marker.y);
+        if (eachElement.type === "sawblade") {
+          createPhantom(eachElement.x, eachElement.y);
+        } else if (eachElement.type === "enemy") {
+          createEnemy(eachElement.x, eachElement.y);
+        } else if (eachElement.type === "reward") {
+          createReward(eachElement.x, eachElement.y);
+        } else if (eachElement.type === "marker") {
+          createMarker(eachElement.x, eachElement.y);
         }
       }
       //////////////////////////////////////////////
